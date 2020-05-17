@@ -1,31 +1,44 @@
 import React, { useContext } from'react';
-import { View, Text, StyleSheet, FlatList, Button } from 'react-native';
-import BlogContext from '../context/BlogContext';
+import { StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { Context as BlogContext } from '../context/BlogContext';
+import BlogPost from '../components/BlogPost';
+import { Feather } from '@expo/vector-icons';
 
-const IndexScreen = () => {
-  const { data, addBlogPost } = useContext(BlogContext);
+const IndexScreen = ({ navigation }) => {
+  const { state, addBlogPost } = useContext(BlogContext);
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Create')}
+          style={styles.addButton}
+        >
+          <Feather name='plus' size={30} />
+        </TouchableOpacity>
+      ),
+    });
+  });
 
   return (
-    <View>
-      <Text>Index Screen</Text>
-      <Button
-        title='Add Post'
-        onPress={addBlogPost}
-      />
+    <>
       <FlatList
-        data={data}
+        data={state}
         keyExtractor={blogPost => blogPost.title}
         renderItem={({ item }) => {
           return (
-            <Text>{item.title}</Text>
+            <BlogPost post={item} />
           );
         }}
       />
-    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
+  addButton: {
+    marginHorizontal: 5,
+  },
 });
 
 export default IndexScreen;
