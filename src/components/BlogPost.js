@@ -14,7 +14,7 @@ const BlogPost = ({ post, navigation }) => {
       })}
     >
       <View style={styles.row}>
-        <Text style={styles.title}>{post.title} - {post.id}</Text>
+        <Text style={styles.title}>[{post.id}] {post.title}</Text>
         <TouchableOpacity
           onPress={() => deleteBlogPost(post.id)}
         >
