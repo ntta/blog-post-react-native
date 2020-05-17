@@ -1,4 +1,4 @@
-import React, { useContext } from'react';
+import React, { useContext, useLayoutEffect } from'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Context as BlogContext } from '../context/BlogContext';
 import { withNavigation } from '@react-navigation/compat';
@@ -8,7 +8,7 @@ const ShowScreen = ({ route, navigation }) => {
   const { state } = useContext(BlogContext);
   const blogPost = state.find(blogPost => blogPost.id === route.params.id);
 
-  React.useLayoutEffect(() => {
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity

@@ -1,13 +1,20 @@
-import React, { useContext } from'react';
+import React, { useContext, useEffect, useLayoutEffect, useCallback } from'react';
 import { StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { Context as BlogContext } from '../context/BlogContext';
 import BlogPost from '../components/BlogPost';
 import { Feather } from '@expo/vector-icons';
+import { useFocusEffect } from '@react-navigation/native';
 
 const IndexScreen = ({ navigation }) => {
-  const { state } = useContext(BlogContext);
+  const { state, getBlogPosts } = useContext(BlogContext);
 
-  React.useLayoutEffect(() => {
+  useFocusEffect(
+    useCallback(() => {
+      getBlogPosts();
+    }, [])
+  );
+
+  useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
         <TouchableOpacity
