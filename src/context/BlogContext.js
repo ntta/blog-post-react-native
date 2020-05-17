@@ -19,7 +19,9 @@ const blogReducer = (state, action) => {
 };
 
 const addBlogPost = dispatch => {
-  return (title, content) => {
+  return (title, content, callback) => {
+    // await axios.post()
+    // and wrap everything below in try catch
     dispatch({
       type: 'add_blogpost',
       payload: {
@@ -27,6 +29,7 @@ const addBlogPost = dispatch => {
         content
       }
     });
+    callback();
   }
 };
 

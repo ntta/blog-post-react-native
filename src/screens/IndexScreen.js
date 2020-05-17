@@ -5,7 +5,7 @@ import BlogPost from '../components/BlogPost';
 import { Feather } from '@expo/vector-icons';
 
 const IndexScreen = ({ navigation }) => {
-  const { state, addBlogPost } = useContext(BlogContext);
+  const { state } = useContext(BlogContext);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
