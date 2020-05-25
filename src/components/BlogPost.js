@@ -1,24 +1,26 @@
-import React, { useContext } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { Context as BlogContext } from '../context/BlogContext';
-import { FontAwesome } from '@expo/vector-icons';
-import { withNavigation } from '@react-navigation/compat';
+import React, { useContext } from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { Context as BlogContext } from "../context/BlogContext";
+import { FontAwesome } from "@expo/vector-icons";
+import { withNavigation } from "@react-navigation/compat";
 
 const BlogPost = ({ post, navigation }) => {
-  const { state, deleteBlogPost } = useContext(BlogContext);
+  const { deleteBlogPost } = useContext(BlogContext);
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('Show', {
-        id: post.id
-      })}
+      onPress={() =>
+        navigation.navigate("Show", {
+          id: post.id,
+        })
+      }
     >
       <View style={styles.row}>
-        <Text style={styles.title}>[{post.id}] {post.title}</Text>
-        <TouchableOpacity
-          onPress={() => deleteBlogPost(post.id)}
-        >
-          <FontAwesome style={styles.icon} name='trash-o' />
+        <Text style={styles.title}>
+          [{post.id}] {post.title}
+        </Text>
+        <TouchableOpacity onPress={() => deleteBlogPost(post.id)}>
+          <FontAwesome style={styles.icon} name="trash-o" />
         </TouchableOpacity>
       </View>
     </TouchableOpacity>
@@ -27,12 +29,12 @@ const BlogPost = ({ post, navigation }) => {
 
 const styles = StyleSheet.create({
   row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     paddingVertical: 20,
     paddingHorizontal: 10,
     borderBottomWidth: 1,
-    borderColor: 'gray'
+    borderColor: "gray",
   },
   title: {
     fontSize: 18,

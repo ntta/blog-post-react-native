@@ -1,13 +1,12 @@
-import React, { useContext } from'react';
-import { StyleSheet } from 'react-native';
-import { Context as BlogContext } from '../context/BlogContext';
-import BlogPostForm from '../components/BlogPostForm';
-import { withNavigation } from '@react-navigation/compat';
+import React, { useContext } from "react";
+import { Context as BlogContext } from "../context/BlogContext";
+import BlogPostForm from "../components/BlogPostForm";
+import { withNavigation } from "@react-navigation/compat";
 
 const EditScreen = ({ route, navigation }) => {
   const id = route.params.id;
   const { state, editBlogPost } = useContext(BlogContext);
-  const blogPost = state.find(blogPost => blogPost.id === id);
+  const blogPost = state.find((blogPost) => blogPost.id === id);
 
   return (
     <BlogPostForm
@@ -18,8 +17,5 @@ const EditScreen = ({ route, navigation }) => {
     />
   );
 };
-
-const styles = StyleSheet.create({
-});
 
 export default withNavigation(EditScreen);
